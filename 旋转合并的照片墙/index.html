@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转合并的照片墙</title>
+	<style>
+		body{
+			background: url(image/bg.jpg);
+			overflow: hidden;
+		}
+		#container{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+		}
+		#container .img{
+			position: absolute;
+			cursor: pointer;
+			border: 6px solid #fff;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, .7)
+			-webkit-transition: all 1.5s ease-in-out;
+			-moz-transition: all 1.5s ease-in-out;
+			-ms-transition: all 1.5s ease-in-out;
+			-o-transition: all 1.5s ease-in-out;
+			transition: all 1.5s ease-in-out;
+		}
+		#container .img,.piece{
+			border: 1px solid white;
+			box-shadow: 0px 0px 2px black;
+		}
+		#container .img span{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			opacity: 0;
+			-webkit-transition: opacity 1.5s ease-in-out;
+			-moz-transition: opacity 1.5s ease-in-out;
+			-ms-transition: opacity 1.5s ease-in-out;
+			-o-transition: opacity 1.5s ease-in-out;
+			transition: opacity 1.5s ease-in-out;
+		}
+		 #prev, #next {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            margin-top: -30px;
+            border: 1px solid #999;
+            cursor: pointer;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+            z-index: 2;
+            opacity: 0.6;
+            -webkit-transition: 0.7s all ease;
+            -moz-transition: 0.7s all ease;
+            -ms-transition: 0.7s all ease;
+            -o-transition: 0.7s all ease;
+            transition: 0.7s all ease;
+        }
+
+        #prev {
+            left: -20px;
+            background: url(image/prev.png) center no-repeat white;
+            border-radius: 0 8px 8px 0;
+            display: none;
+        }
+         #prev:hover {
+            left: 0;
+            opacity: 1;
+        }
+         #next {
+            right: -20px;
+            background: url(image/next.png) center no-repeat white;
+            border-radius: 8px 0 0 8px;
+            display: none;
+        }
+         #next:hover {
+            right: 0;
+            opacity: 1;
+        }
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+	<span id="prev"></span>
+	<span id="next"></span>
+
+	<script>
+		(function(){
+			var oContainer = document.getElementById('container');
+		var oPrev = document.getElementById('prev');
+		var oNext = document.getElementById('next');
+
+		var ROW = 4, //图片阵列的行
+			COL = 6, //图片阵列的列
+			NUM = ROW * COL, //图片阵列总数
+			BIG_IMG_WIDTH = 750, //大图的宽度
+			BIG_IMG_HEIGHT = 500, //大图的高度
+			THUMB_IMG_HEIGHT = THUMB_IMG_WIDTH = 125; //缩略图的宽高
+		var iLoaded = 0; //用来记录加载完毕的图片的数量
+		var bClicked = false;// 用来标识是否点击了图片格子
+		var iNow = 0; //代表大图片的索引
+
+
+		//预加载图片，所有的大图和小图
+		for(var i=1;i<=NUM;i++){
+			var oBigImg = new Image();
+			oBigImg.src = 'image/'+i+'.jpg';
+			oBigImg.onload = function(){
+				if(++iLoaded == NUM*2){//所有图片加载完毕
+					loadSuccess();
+				}
+			};
+			var oThumbImg = new Image();
+			oThumbImg.src = 'image/thumbs/'+i+'.jpg';
+			oThumbImg.onload = function(){
+				if(++iLoaded == NUM*2){
+					loadSuccess();
+				}
+			};
+		}
+			function loadSuccess(){
+				var index  = 0; //代表图片格子的索引
+				var iColGap = (oContainer.offsetWidth - COL * THUMB_IMG_WIDTH) / (COL + 1),//横向图片间隙
+                    iRowGap = (oContainer.offsetHeight - ROW * THUMB_IMG_HEIGHT) / (ROW + 1);//纵向图片间隙
+				for(var i=0;i<ROW;i++){
+					for(var j=0;j<COL;j++){
+						var oDiv = document.createElement('div');
+							oDiv.pos = {
+							left: parseInt(iColGap+j*(iColGap+THUMB_IMG_WIDTH)),	
+							top: parseInt(iRowGap+i*(iRowGap+THUMB_IMG_HEIGHT))
+						};
+						oDiv.index = index;
+						oDiv.matrix ={
+							col:j,
+							row:i
+						}
+						oDiv.style.left = (-Math.random()*300-200)+'px';
+						oDiv.style.top = (-Math.random()*300-200)+'px';
+						oDiv.className = 'img';
+						oDiv.style.width = THUMB_IMG_WIDTH + 'px';
+						oDiv.style.height = THUMB_IMG_HEIGHT + 'px';
+						oDiv.style.background = 'url(image/thumbs/'+(index+1)+'.jpg)';
+						oDiv.innerHTML = '<span></span>';
+						oContainer.appendChild(oDiv );
+						index++;
+					}
+				}
+				var aImg = document.getElementsByClassName('img');
+				index--; // 上面循环结束后index值为24
+				var timer = setInterval(function(){
+					aImg[index].style.left = aImg[index].pos.left + 'px';
+					aImg[index].style.top = aImg[index].pos.top + 'px';
+					setstyle(aImg[index], 'transform', 'rotate('+(Math.random()*40-20)+'deg)');
+					aImg[index].addEventListener('click', clickHander,false);
+					index--;
+					if(index == -1){
+						clearInterval(timer);
+					}
+				},100)
+				function clickHander(){
+				if(bClicked){//如果bclicked为true表示点击过格子，则重新打散
+					for(var i=0;i<aImg.length;i++){
+						// alert(aImg[i].pos.left);
+						oSpan = aImg[i].getElementsByTagName('span')[0];
+						aImg[i].style.left = aImg[i].pos.left+'px';
+						aImg[i].style.top = aImg[i].pos.top+'px';
+						setstyle(aImg[i], 'transform', 'rotate('+(Math.random()*40-20)+'deg)');
+						oSpan.style.opacity = 0;
+						aImg[i].className = 'img';
+					}
+					oPrev.style.display = oNext.style.display = 'none';
+				}else{//需要合并
+					var bigImgPos = {
+						left: (oContainer.offsetWidth - BIG_IMG_WIDTH)/2,
+						top: (oContainer.offsetHeight - BIG_IMG_HEIGHT)/2
+
+					}
+					for(var i=0;i<aImg.length;i++){
+						oSpan = aImg[i].getElementsByTagName('span')[0];
+						oSpan.style.background = 'url(image/'+(this.index+1)+'.jpg)'+(-aImg[i].matrix.col*THUMB_IMG_WIDTH)+'px '+(-aImg[i].matrix.row*THUMB_IMG_HEIGHT)+'px';
+						oSpan.style.opacity = 1;
+						aImg[i].style.left = bigImgPos.left+aImg[i].matrix.col*THUMB_IMG_WIDTH+'px';
+						aImg[i].style.top = bigImgPos.top +aImg[i].matrix.row*THUMB_IMG_HEIGHT+'px';
+						setstyle(aImg[i], 'transform','rotate(0deg)');
+						aImg[i].className = 'img piece';
+					}
+					oPrev.style.display = oNext.style.display = 'block';
+				}
+					bClicked = !bClicked;
+			}
+			oPrev.onclick = oNext.onclick = function () {
+                if (this == oPrev) {
+                    iNow--;
+                    if (iNow == -1) {
+                        iNow = NUM - 1;
+                    }
+                }
+                else {
+                    iNow++;
+                    if (iNow == NUM) {
+                        iNow = 0;
+                    }
+                }
+
+                var arr = [];
+                for (i = 0; i < NUM; i++) {
+                    arr.push(i);
+                }
+                arr.sort(function () {
+                    return Math.random() - 0.5;//打乱数组顺序
+                });
+                var timer = setInterval(function () {
+                    var item = arr.pop();
+
+                    aImg[item].getElementsByTagName('span')[0].style.background = 'url(image/' + (iNow + 1) + '.jpg) ' + -aImg[item].matrix.col * THUMB_IMG_WIDTH + 'px ' + -aImg[item].matrix.row * THUMB_IMG_HEIGHT + 'px';
+
+                    if (!arr.length){
+                    	clearInterval(timer);
+                    }
+                }, 20);
+            };
+			}
+
+
+			function setstyle(elem, attr, value){
+				['Webkit','Moz','Ms','O',''].forEach(function(prefix){
+					elem.style[prefix + attr.charAt(0).toUpperCase() + attr.substr(1)] = value;
+				})
+			}
+
+
+        
+		})();
+	</script>
+</body>
+</html>

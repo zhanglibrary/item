@@ -1,0 +1,197 @@
+/*intro  开始*/
+#intro{
+	height: 200px;
+}
+#company-news, #company-news-too{
+	width: 334px;
+	height: 187px;
+	float: left;
+	margin-right: 40px;
+}
+#news{
+	margin-top: 20px;
+	float: left;
+	height: 194px;
+}
+#news h3{
+	text-indent: 14px;
+	height: 30px;
+	/*border-bottom: 2px solid  #EA3939;*/
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	line-height: 30px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+#company-news h3{
+	color: #EA3939 ;
+	border-bottom-color: #EA3939;	
+	background-image: url(../img/index/xw_1.png);
+}
+#company-news-too h3{ 
+	border-bottom-color: black;
+	background-image: url(../img/index/xw_2.png);
+}
+#news .more{
+	font-size: 14px;
+	color: #5a5a5a;
+	margin-right: 10px;
+	float: right;
+}
+#news .news-list{
+	list-style: disc;
+	margin-left: 18px;
+	color: #5A5A5A;	
+}
+#news .news-title{
+	font-size: 12px;
+ 	color: #5A5A5A;	
+}
+#news .news-date{
+	float: right;
+	color: #5A5A5A;	
+}
+.news-list li{
+ 	height: 30px;
+ 	border-bottom: 1px dotted #ccc;
+ 	line-height: 20px;
+}#news .news-title:hover{
+	color: red;
+}
+#serve{
+	float: left;
+}
+#serve .service-item{
+	float: left;
+	width: 100px;
+	height: 45px;
+	/*padding-top: 125px; */
+	margin-right: 20px;
+	text-align: center;
+	background-repeat: no-repeat;
+/*	background-position: center top;*/
+}
+#serve a{
+	display: block;
+	background-position: center top;
+	/*position: top;*/
+	/* width: 95px; */
+	height: 125px;
+
+}
+#serve .financing{
+	background-image: url(../img/index/sy_tz_1.jpg);
+}
+#serve .financing:hover{
+	background-image: url(../img/index/sy_tz_1_h.jpg);
+}
+#serve .funds{
+	background-image: url(../img/index/sy_tz_2.jpg);
+}
+#serve .funds:hover{
+	background-image: url(../img/index/sy_tz_2_h.jpg);
+}
+#serve .equity{
+	background-image: url(../img/index/sy_tz_3.jpg);
+}
+#serve .equity:hover{
+	background-image: url(../img/index/sy_tz_3_h.jpg);
+}
+#serve .title{
+	height: 25px;
+	margin-top: 10px;
+}
+#serve .title a{
+	font-size: 14px;
+	color: #EA3939;
+	font-weight: bold;
+}
+#serve .title-pr{
+	font-size: 12px;
+	color: #826682;
+}
+#about .about-us{
+	width: 295px;
+	height: 320px;
+	float: left;
+	margin-right: 10px;
+}
+#about .picture{
+	height: 135px;
+	background-image: url(../img/index/abc.PNG);
+}
+#about .character{
+	border: 1px #CCCCCC solid;
+	padding: 20px 10px 10px 10px;
+	font-size: 12px;
+	line-height: 1.8;
+	color: #5a5a5a;
+}
+#about .invest{
+	width: 240px;
+	height: 320px;
+	float: left;
+	margin-right: 10px;
+	padding: 20px;
+	background: #F1F1F1 url(../img/index/yw_t.png) right 85% no-repeat;
+}
+#about .character-one{
+	width: 100%;
+    font-size: 15px;
+    text-align: left;
+    color: #EA3939;
+}
+#about .character-two{
+	font-size: 13px;
+    line-height: 30px;
+    color: #000;
+}
+#about .character-three{
+	font-size: 12px;
+    color: #EA3939;
+}
+#about .contact{
+	width: 500px;
+	height: 155px;
+	background-color: green;
+	float: left;
+	margin-bottom: 10px;
+	background: url(../img/index/call_t.png) left no-repeat;
+}
+#about .contact-style{
+	float: right;
+    width: 265px;
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 30px;
+}
+#about .job{
+	width: 500px;
+	height: 155px;	
+	background-color: gray;
+	float: left;
+	background: url(../img/index/zp_t.png) left no-repeat;
+}
+#about .job-pass{
+	float: left;
+    margin-left: 170px;
+    margin-top: 15px;
+}
+#about .character-four{
+	font-size: 14px;
+    color: #EA3939;
+}#about .character-five{
+	font-size: 12px;
+    line-height: 30px;
+    color: #000;
+}
+#about .character-six{
+	font-size: 12px;
+    color: #EA3939;
+}
+#footer{
+	clear: both;
+	margin-top: 20px;
+}
+/*intro  结束*/
+ 

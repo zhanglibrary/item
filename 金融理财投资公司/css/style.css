@@ -1,0 +1,245 @@
+/*css reset 样式重置*/
+*{
+	margin: 0;
+	padding: 0;
+}
+ul, ol{
+	list-style: none;	
+}
+a{
+	text-decoration: none;
+}
+img{
+	border: 0;
+}
+body{
+	font-size: 14px;
+}
+.wrap{
+	width: 1100px;
+	margin: 0 auto;
+}
+/*.clearfix:after{
+	content: '';
+	display: block;
+	clear: both;
+}*/
+
+/*header  开始*/
+#header{
+	width: 1100px; 
+	height: 100px;
+	margin: 0  auto	;
+	position: relative; 
+}
+#logo{
+	position: absolute; 
+	top: 50%;
+	margin-top: -35px;
+
+}
+#search-box{
+	height: 30px; 
+	width: 262px;
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+	margin-top: -15px;
+	left: 50%;
+	margin-left: -131px;
+	border: 1px solid #EA3939;
+}
+#search-text{
+	width: 212px;
+	height: 30px;
+	border: 0;
+	float: left; 
+	text-indent: 10px;
+	outline: none;
+	line-height: 30px;
+}
+#search-btn{
+	background: #EA3939;
+	color: white;
+	width: 50px;
+	height: 30px;
+	border: 0;
+	float: left;
+}
+#search-result{
+	 border: 1px solid #EA3939;
+	 width: 212px;  
+	 position: absolute;
+	 top: 30px;
+	 left: -1px;
+	 background: white;
+	 display: none;
+}
+#search-result li{
+	 height: 25px;	
+	 border-bottom: 1px dotted #ccc;
+	 line-height: 25px;
+	 text-indent: 5px;
+	 cursor: pointer;
+}
+#search-result li:hover{
+	background: #ccc;
+}
+#search-result .last{
+	border: 0px;
+}
+#share {
+	width: 210px;
+	height: 30px;
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	margin-top: -15px;
+
+}
+#share li{
+	float:left; 
+	margin-right: 60px;
+}
+#share .qq{
+	background: url("../img/top_qq.jpg");
+} 
+#share .qq:hover{
+	background: url("../img/top_qq_h.jpg");
+} 
+#share .weibo{
+	background-image: url('../img/top_weib.jpg');
+}
+#share .weibo:hover{
+	background-image: url('../img/top_weib_h.jpg');
+}
+#share .mail{
+	background-image: url('../img/top_you.jpg');
+}
+#share .mail:hover{
+	background-image: url('../img/top_you_h.jpg');
+}
+#share a{
+	width: 30px;
+	height: 30px;
+	background: red;
+	float: left;
+}
+/*header  结束*/
+/*nav  开始*/
+#nav{
+	height: 50px;
+	background: red;
+} 
+#nav ul{
+	height: 50px;
+	width: 1100px;
+	margin: 0 auto;
+}
+#nav li{
+	float: left;
+	width: 135px;
+	height: 50px;
+}
+#nav a{
+	float: left;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 50px;
+	color: white; 
+}
+#nav a:hover{
+	background: #A61C00;
+}
+/*nav  结束*/
+/*banner  开始*/
+#banner {
+	background: url("../img/banner.jpg") no-repeat 50% 50%;
+	height: 390px;
+}
+/*banner  结束*/ 
+/*footer  开始*/
+#footer{
+	height: 180px;
+	background-color: #666;
+	position: relative;
+}
+#footer .tel img{
+	top: -10px;
+	position: absolute;
+}
+#footer .tel{
+	width: 500px;
+	height: 135px;
+	float: left;
+}
+#footer .tel p{
+	margin-top: 40px;
+    font-size: 14px;
+    color: #fff;
+    margin-left: 60px;
+}
+#footer .follow{
+	width: 500px;
+	height: 135px;
+	float: right;
+	background: url(../img/ewm.jpg) no-repeat left;
+    color: #fff;
+}
+#footer .follow-pro{
+	margin-left: 120px;
+	margin-top: 35px;
+}
+#footer li{
+	float: left;
+	/*background: black;*/
+/*	height: 30px;
+	width: 30px;
+*/	margin-right: 40px;
+}
+#footer li a{
+	display: block;
+}
+#follow-style{
+	margin-top: 20px;
+    position: absolute;
+}
+#footer .footer-qq{
+	background: url('../img/db_qq.jpg') no-repeat;
+	width: 40px;
+	height: 40px;
+	/*cursor: pointer;*/
+}
+#footer .footer-qq:hover{
+	background: url('../img/db_qq_h.jpg') no-repeat;
+	width: 40px;
+	height: 40px;
+	/*cursor: pointer;*/
+}
+#footer .footer-wei{
+	background: url('../img/db_wb.jpg') no-repeat;
+	width: 40px;
+	height: 40px;
+}
+#footer .footer-wei:hover{
+	background: url('../img/db_wb_h.jpg') no-repeat;
+	width: 40px;
+	height: 40px;
+}
+#footer .footer-you{
+	background: url('../img/db_yx.jpg') no-repeat;
+	width: 40px;
+	height: 40px;
+}
+#footer .footer-you:hover{
+	background: url('../img/db_yx_h.jpg') no-repeat;
+	width: 40px;
+	height: 40px;
+}
+#footer .copyright{
+	clear:both;
+	text-align: center;
+	color: #fff;
+}
+/*footer  结束*/

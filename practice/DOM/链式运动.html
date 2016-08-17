@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>链式运动</title>
+	<style>
+		#div1{
+			width: 200px;
+			height: 100px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">你好</div>
+	<script src="move链.js"></script>
+	<script>
+		var oDiv = document.getElementById('div1');
+		oDiv.onmouseover = function(){
+			move(oDiv, {width: 400}, function(){
+				move(oDiv, {height: 200}, function(){
+					move(oDiv, {fontSize: 40});
+				});
+			});
+		};
+	</script>
+</body>
+</html>

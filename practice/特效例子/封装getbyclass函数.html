@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装函数</title>
+</head>
+<body>
+	<ul id="ul1">
+		<li class="aa">11</li>
+		<li>
+			22
+			<span class="aa">44</span>
+		</li>
+		<li class="aa">33</li>
+	</ul>
+	<script>
+		var oUl1 = document.getElementById('ul1');
+		var aLi = getByclass('aa', oUl1, 'li');
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].style.background = 'red';
+		}
+		function getByclass(clsName, context, tag){
+			var result = [];
+			context = context || document;
+			tag = tag || '*';
+			var arr = context.getElementsByTagName(tag);
+			for(var i=0;i<arr.length;i++){
+				var re = new RegExp("\\b"+clsName+"\\b",'g');
+				if(  re.test(arr[i].className)  ){
+					result.push(arr[i]);
+				}
+			}
+			return result;
+		}
+	</script>
+</body>
+</html>

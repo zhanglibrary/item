@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul,ol{
+			list-style: none;
+		}
+		#container{
+			width: 706px;
+			height: 220px;
+			margin: 100px auto;
+			overflow: hidden;
+			position: relative;
+		}
+		#tab{
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+		}
+		#tab li{
+			width: 20px;
+			height: 20px;
+			margin-right: 10px;
+			background-color: black;
+			color: white;
+			text-align: center;
+			line-height: 20px;
+			float: left;
+			cursor: pointer;
+		}
+		#container .selected{
+			background-color: orange;
+		}
+		#content img{
+			display: none;
+		}
+		#content .selected{
+			display: block;
+		}
+		#arrow{
+			position: absolute;
+			left: 20px;
+			bottom: 10px; 
+		}
+		#arrow span{
+			width: 20px;
+			height: 20px;
+			float: left;
+			text-align: center;
+			line-height: 20px;
+			margin-right: 5px;
+			background-color: black;
+			color: white;	
+			cursor: pointer;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="tab">
+			<li class="selected">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	<div id="content">
+		<img src="imgs/1.jpg" alt="" class="selected">
+		<img src="imgs/2.jpg" alt="">
+		<img src="imgs/3.jpg" alt="">
+		<img src="imgs/4.jpg" alt="">
+	</div>
+	<div id="arrow">
+		<span id="prev">&lt;</span>
+		<span id="next">&gt;</span>
+	</div>
+	</div>
+	<script>
+	 	var oContainer = document.getElementById('container');
+		var oTab = document.getElementById('tab');
+		var aLi = oTab.children;
+		var oContent = document.getElementById('content');
+		var aImg = oContent.children;
+		var oPrev = document.getElementById('prev');
+		var oNext = document.getElementById('next');
+		var index = 0;//当前正在显示的图片
+		for(var i=0; i<aLi.length;i++){
+			aLi[i].index = i;
+			aLi[i].onmouseover =function(){
+				index = this.index;
+				moveImg( this.index );
+			};	
+		}
+		oPrev.onclick = function(){
+			index--;
+			if(index == -1){
+				index = aLi.length-1
+			}
+			moveImg(index);
+		};
+		oNext.onclick = function(){
+			index++;
+			if(index == aLi.length){
+				index = 0;
+			}
+			moveImg(index);
+		};
+		function moveImg(index){
+			for(var i=0;i<aLi.length;i++){
+					aLi[i].className = '';
+					aImg[i].className = '';
+				}
+				aLi[index].className = 'selected';
+				aImg[index].className = 'selected';
+		}
+		var timer;
+		function move(){
+			timer = setInterval(function(){
+			oNext.onclick();
+		},2000);
+		}
+		move();
+		oContainer.onmouseover = function(){
+			clearInterval(timer);
+		};
+		oContainer.onmouseout = function(){
+			move();
+		};
+	</script>
+</body>
+</html>

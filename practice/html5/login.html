@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+	</style>
+</head>
+<body>
+	<p>用户名:<input type="text" id="username"></p>
+	<p>密码:<input type="text" id="password"></p>
+	<input type="checkbox" id="bechecked">免登录 
+	<button id="btn">确定</a></button>
+	<button>取消</button>
+	<script src="封装cookie.js"></script>
+	<script>
+		var oBtn = document.getElementById('btn');
+		var oBechecked = document.getElementById('bechecked');
+		oBtn.onclick = function(){
+			window.open('index.html');
+			var oldUesr = document.getElementById('username').value;
+			var oldPas = document.getElementById('password').value;
+			if(oBechecked.checked){
+
+			}
+		}
+	</script>
+</body>
+</html>

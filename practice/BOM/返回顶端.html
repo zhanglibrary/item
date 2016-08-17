@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			height: 2000px;
+		}
+		#go-top{
+			width: 50px;
+			height: 50px;
+			background-color: #ccc;
+			text-align: center;
+			line-height: 50px;
+			position: fixed;
+			right: 10px;
+			bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	haha
+	<a href="" id="go-top">Go!</a>
+	<script>
+		var oGoTop = document.getElementById("go-top");
+		oGoTop.onclick = function(){
+			var iScrollTop = document.documentElement.scrollTop||document.body.scrollTop;//滚动条当前位置
+			var timer = setInterval(function(){//定时器
+				window.scrollTo(0,iScrollTop*=0.8);
+					console.log(iScrollTop);
+
+				if(iScrollTop<=1){
+					window.scrollTo(0,0);
+					clearInterval(timer);
+				}
+			},100);
+			return false;//阻止默认行为：刷新页面
+		}
+	</script>
+</body>

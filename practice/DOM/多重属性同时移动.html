@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多重属性同时移动</title>
+	<style>
+		ul,ol {
+			list-style: none;
+		}
+		#ul1 li{
+			width: 200px;
+			height: 60px;
+			background-color: red;
+			margin-bottom: 200px;
+			border: 1px solid black;
+		}
+
+	</style>
+</head>
+<body>
+	<ul id="ul1">
+		<li>宽和高同时移动</li>
+		<li>透明度和字体同时移动</li>
+		<li>边框和款同时移动</li>
+	</ul>
+	<script src="move.js"></script>
+	<script>
+		var oUl = document.getElementById('ul1');
+		var aLi = oUl.getElementsByTagName('li');
+		aLi[0].onmouseover = function(){
+			move(this, {width:400 ,height: 160});
+		};
+		aLi[1].onmouseover = function(){
+			move(this, {opacity:100 ,fontSize: 40});
+		};
+		aLi[2].onmouseover = function(){
+			move(this, {borderWidth:20 ,height: 160});
+		};
+
+		
+	</script>
+</body>
+</html>

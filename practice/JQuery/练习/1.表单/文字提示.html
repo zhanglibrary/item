@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.tip{
+		height: 25px;
+		width: 50px;
+		background-color: yellow;
+		border: 1px solid black;
+		position: absolute;
+	}
+	</style>
+</head>
+<body>
+	<a href="" title="item 1" class="aaa"> item 1 </a>  <br>
+	<a href="" title="item 2" class="aaa"> item 2 </a>	<br>
+	<a href="" title="item 3" class="aaa"> item 3 </a>	<br>
+	<a href="" title="item 4" class="aaa"> item 4 </a>	<br>
+	<script src="../jquery-1.11.3.min.js"></script>
+	<script>
+	$(function(){
+		$('.aaa').hover(function(e){
+			this.tempTitle = this.title;
+			$("<div class='tip'>"+this.tempTitle+'</div>').offset({
+				left: e.pageX + 20,
+				top: e.pageY + 20
+			}).appendTo('body');
+			this.title = '';
+		},function(){
+			$('.tip').remove();
+			this.title = this.tempTitle;
+		}).on('mousemove',function(e){
+			$('.tip').offset({
+				left: e.pageX + 20,
+				top: e.pageY + 20
+			})
+		});
+	});
+		
+	</script>
+</body>
+</html>

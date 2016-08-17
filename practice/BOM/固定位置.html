@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0px;
+		}
+		body{
+			height: 2000px;
+		}
+		#div1{
+			width: 100px;
+			height: 200px;
+			right: 0;
+			top: 300px;
+			background-color: red;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+	<script>
+		var oDiv = document.getElementById('div1');
+		window.onscroll = function(){
+			var iSscrollTop =document.documentElement.scrollTop||document.body.scrollTop;
+			move(oDiv,iSscrollTop + 300);
+		};
+		var timer;
+		function move(elem,target){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				var speed = (target - elem.offsetTop) / 8;
+				speed = speed > 0? Math.ceil(speed):Math.floor(speed);
+				if(elem.offsetTop == target){
+					clearInterval(timer);
+				}else{
+				elem.style.top = elem.offsetTop + speed +'px';
+				}
+			},30);
+		};
+	</script>
+</body>
+</html>

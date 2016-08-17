@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义滚动条</title>
+	<style>
+	#container{
+		width: 300px;
+		height: 200px;
+		border: 1px solid black;
+		overflow: hidden;
+		position: relative;
+	}
+	#content{
+		position: absolute;
+		width: 280px;
+		left: 0;
+		top: 0;
+	}
+	#scrop-box{
+		position: absolute;
+		width: 20px;
+		height: 200px;
+		top: 0;
+		right: 0;
+		background-color: gray;
+	}
+	#scrop-btn{
+		width: 20px;
+		height: 20px;
+		background-color: red;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="content">
+			哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈啊哈哈哈
+		</div>
+
+		<div id="scrop-box">
+			<div id="scrop-btn"></div>
+		</div>
+	</div>
+	
+	<script>
+		var oContainer = document.getElementById('container');
+		var oScropBtn = document.getElementById('scrop-btn');
+		var oContent = document.getElementById('content');
+		oScropBtn.onmousedown = function(e){
+			e = e || window.event;
+			var disY = e.clientY - oScropBtn.offsetTop;
+			document.onmousemove = function(e){
+				e = e || window.event;
+				var iTop = e.clientY - disY;
+				if(iTop >= 180){
+					iTop = 180;
+				}
+				if(iTop <= 0){
+					iTop = 0;
+				}
+				oScropBtn.style.top = iTop + 'px';
+				var fScale = iTop / (oContainer.offsetHeight - oScropBtn.offsetHeight);
+				console.log((oContent.offsetHeight - oContainer.offsetHeight) * fScale);
+				oContent.style.top = -(oContent.offsetHeight - oContainer.offsetHeight) * fScale + 'px';
+
+			};
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			};
+			return false;//阻止选定的默认行为
+		};
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+require.js解决的问题：
+ 1.模块化开发
+ 2.文件依赖加载
+
+
+
+ 判断值是什么类型：
+ typeof;
+ arr = [];
+ arr.constructor == Array;
+ arr.instanceof.Array;
+
+
+
+ AMD(asynchronous moudle ) require.js 异步模块定义
+ CMD() sea.js 同步模块定义 
+ 区别：
+ 1对于依赖的模块 amd提前执行，cmd延迟执行
+ 2cmd依赖就近 amd推崇前置
+
+ require（动态加载js）原理：
+  动态创建script标签。
+  利用正则表达式解析关键字，再去动态创建
+ 
+
+ async和defer区别
+   defer 是ie的
+   async文件加载完就执行
+   defer整个文档加载完，可以按顺序

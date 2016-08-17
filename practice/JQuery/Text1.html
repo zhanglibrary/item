@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="jquery-1.11.3.min.js"></script>
+
+	<script>
+	//文档就绪函数，使用jquery函数的第一步,不会发生覆盖
+		$(document).ready(function(){
+			alert(222);
+		});
+		$(function(){
+			alert(111);
+		});
+		$(function(){
+			alert('haha');
+		});
+		$(function(){
+			alert(1);
+		});
+	</script>
+</body>
+</html>

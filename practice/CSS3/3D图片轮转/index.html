@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D轮转图</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#container{
+			width: 600px;
+			height: 400px;
+			position: relative;
+			margin: 50px auto;
+			-webkit-perspective: 800px;
+		}
+		#img img{
+			width: 600px;
+			height: 400px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			opacity: 0;
+			-webkit-transform-origin: bottom;
+		}
+		#prev, #next{
+			width: 50px;
+			height: 50px;
+			top: 100px;
+			cursor: pointer;
+			position: absolute;
+			border-radius: 50%;
+			background:  #efefef;
+			text-align: center;
+			line-height: 50px;
+			font-size: 40px;
+			color: #fff;
+			-webkit-text-stroke: 2px #ccc;
+			-webkit-box-shadow: 2px 2px 10px #666;
+		}
+		#prev{
+			left: -100px;
+		}
+		#next{
+			right: -100px;
+		}
+		#img .show{
+			-webkit-animation: show 1.2s ease-in forwards;
+		}
+		@-webkit-keyframes show {
+            0% {
+                -webkit-transform: rotateX(180deg);
+                opacity: 0;
+            }
+            57% {
+                -webkit-transform: rotateX(-16deg);
+            }
+            66% {
+                -webkit-transform: rotateX(14deg);
+            }
+            74% {
+                -webkit-transform: rotateX(-12deg);
+            }
+            81% {
+                -webkit-transform: rotateX(10deg);
+            }
+            87% {
+                -webkit-transform: rotateX(-8deg);
+            }
+            92% {
+                -webkit-transform: rotateX(6deg);
+            }
+            96% {
+                -webkit-transform: rotateX(-4deg);
+            }
+            100% {
+                -webkit-transform: rotateX(0deg);
+                opacity: 1;
+            }
+
+        }
+		#img .hide{
+            -webkit-animation: hide 1s ease-in forwards;
+        }
+        @-webkit-keyframes hide{
+            0%{
+                -webkit-transform: rotateX(0deg);
+                opacity: 1;
+            }
+            100%{
+                -webkit-transform: rotateX(-180deg);
+                opacity: 0;
+            }
+        }
+
+	</style>
+</head>
+<body>
+	<div id="container">
+		<span id="prev">&lt;</span>
+		<span id="next">&gt;</span>
+		<div id="img">
+			<img src="image/img1.jpg" alt="" class="show">
+			<img src="image/img2.jpg" alt="">
+			<img src="image/img3.jpg" alt="">
+			<img src="image/img4.jpg" alt="">
+			<img src="image/img5.jpg" alt="">
+		</div>
+	</div>
+
+	<script>
+		var oPrev = document.getElementById('prev');
+		var oNext = document.getElementById('next');
+		var oContainer = document.getElementById('container');
+		var aImg = oContainer.getElementsByTagName('img');
+		var index = 0;
+		oNext.onclick = function(){
+			aImg[index].className = 'hide';
+			index++;
+			if(index == aImg.length){
+				index = 0;
+			}
+			aImg[index].className = 'show';
+		}
+		oPrev.onclick = function(){
+			aImg[index].className = 'hide';
+			index--;
+			if(index == -1){
+				index = aImg.length-1;
+			}
+			aImg[index].className = 'show';
+		}
+	</script>
+</body>
+</html>

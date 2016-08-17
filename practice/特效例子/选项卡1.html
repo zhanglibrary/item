@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选项卡</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul,ol{
+			list-style: none;
+		}
+		#container{
+			width: 450px;
+			height: 300px;
+			/*background-color: red;*/
+			margin: 100px auto;
+		}
+		#tab{
+			height: 30px;
+		}
+		#tab li{
+			float: left;
+			width: 80px;
+			height: 30px;
+			cursor: pointer;
+			text-align: center;
+			margin-right: 10px;
+		}
+		.select{
+			color: white;
+			background-color: black;
+
+		}
+		#content{
+			background-color: gray;
+			width: 450px;
+			height: 280px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="tab">
+			<li class="select">jq</li>
+			<li>js</li>
+			<li>css</li>
+		</ul>
+		<div id="content">			
+		</div>
+	</div>
+	<script>
+		var data = [
+			"aaaaa",
+			"bbbbb",
+			"一言不合，拔刀就壳"
+		];
+		var oTab = document.getElementById('tab');
+		var aLi = oTab.children;
+		var oContent = document.getElementById('content');
+		oContent.innerHTML = data[0];
+		for(var i=0; i<aLi.length;i++){
+			aLi[i].index = i;
+			aLi[i].onclick =function(){
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].className = '';
+				}
+				this.className = 'select';
+				oContent.innerHTML = data[this.index];
+			};	
+		}
+		
+	</script>
+</body>
+</html>
